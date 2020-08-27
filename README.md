@@ -8,10 +8,6 @@ In an abstract way, if we think about the camera's position coordinates as somet
 
 Everything needed to draw walls has been implement within the Raycaster class included in modules/Raycaster.js. I have gone ahead and built a UI around everything with some controls. A live demo is also availible at https://aeroses.github.io/RaycasterJS/. 
 
-## License
-
-This project is licensed under the Mozilla Public License Version 2.0 - see the LICENSE.md file for details
-
 ## Acknowledgements 
 
 Thanks to Lode's tutorials over at https://lodev.org.
