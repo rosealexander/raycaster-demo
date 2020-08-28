@@ -1,6 +1,6 @@
-# RaycasterJS
+# Raycaster Demo
  
-A ray-caster demo written in javascript. Geometry is rendered by measuring the distance of an emitted "ray" from a view position to its intersection with a predetermined delimeter. In this case, the delimeter is any number stored in a 2d array that does not equal zero. 
+Geometry is rendered by measuring the distance of an emitted "ray" from a view position to its intersection with a predetermined delimeter. In this case, the delimeter is any number stored in a 2d array that does not equal zero. 
 
 Usually a raycaster draws a bunch of vertical lines inorder to render the enviroment. This does not work well with HTML canvas. The solution is to calculate the corners of each simulated 3d shape and then draw flat shapes to the canvas.
 
