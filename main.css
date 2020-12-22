@@ -265,10 +265,6 @@ canvas {
   margin-top: -2vh;
 }
 
-ul {
-  list-style-type: none;
-}
-
 a:link, a:visited {
   text-decoration: none;
 }
@@ -279,6 +275,10 @@ a:link, a:visited {
 
 #navbar .container {
   max-width: 50vw;
+}
+
+#stats {
+  opacity: 0.3;
 }
 
 #buttons {
@@ -292,33 +292,4 @@ a:link, a:visited {
 
 @media (hover: hover) and (pointer: fine) {
   #buttons svg:hover { color: #cccccc; }
-}
-
-.timed-hidden-12 {
-  animation: hide 0s ease-in 12s forwards;
-  animation-fill-mode: forwards;
-}
-
-.timed-fade-12 {
-  animation: 12s ease 0s normal forwards 1 fade;
-}
-
-@keyframes hide {
-  to {
-    width:0;
-    height:0;
-    overflow:hidden;
-  }
-}
-
-@keyframes fade {
-  0% {
-    opacity: 1;
-  }
-  66% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
 }
