@@ -5,6 +5,8 @@ export class Raycaster {
         this._canvas = document.querySelector('canvas');
         this._ctx = this._canvas.getContext('2d');
 
+        this._flag = false;
+
         this._drawMax = 128;
 
         this._worldMap = worldMap;
@@ -168,25 +170,24 @@ export class Raycaster {
                             default: wallColor = "clear";
                         }
 
+                        this._ctx.strokeStyle = wallColor;
+                        this._ctx.fillStyle = wallColor;
+
                         let currentState =
                             100000 * mapPositionX
                             + 1000 * mapPositionY
                             + 10 * this._worldMap[mapPositionX][mapPositionY]
                             + darkenWallColor;
 
-                        this._ctx.strokeStyle = wallColor;
-                        this._ctx.fillStyle = wallColor;
-
                         if (previousState !== currentState || x === this._canvas.width - 1) {
 
-                            this._ctx.beginPath();
-
                             if (Math.trunc((previousState % 100) / 10) !== this._numberOfWallTypes) {
+                                this._ctx.beginPath();
                                 this._ctx.moveTo(x1, y1);
                                 this._ctx.lineTo(x2, y2);
                                 this._ctx.lineTo(x3, y3);
                                 this._ctx.lineTo(x4, y4);
-                                this._ctx.lineTo(x1, y1);
+                                this._ctx.closePath();
 
                                 this._ctx.fill();
                                 this._ctx.stroke();
@@ -208,18 +209,33 @@ export class Raycaster {
         }
     }
 
-    draw(){
-        this._ctx.clearRect(0, 0, this._canvas.width, this._canvas.height);
-
-        //draw environment
+    drawEnvironment(){
         this._drawSky();
         this._drawFloor();
         this._drawWalls();
+    }
 
-        //key commands
+    directionalCommands(){
         if (this.turningRight) this._turnRight();
         else if (this.turningLeft) this._turnLeft();
         else if (this.movingForward) this._moveForward();
         else if (this.movingBackward) this._moveBackward();
+    }
+
+    isMoving(){
+        return this.turningRight || this.turningLeft || this.movingForward || this.movingBackward;
+    }
+
+    draw(){
+        if (!this._flag) {
+            this._flag = true;
+            this.drawEnvironment();
+        }
+
+        this.directionalCommands();
+
+        if (this.isMoving()){
+            this.drawEnvironment();
+        }
     }
 }

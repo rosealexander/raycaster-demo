@@ -12,12 +12,12 @@ export const gameLoop = ([...callback]) => {
     _delta = (_currentTime - _lastTime);
 
     if (_delta > _interval) {
-        callback.forEach(f => f.call());
         _lastTime = _currentTime - (_delta % _interval);
+        callback.forEach(f => f.call());
     }
 }
 
-//draw fps and pos
+//draw fps
 export const getFps = () => {
     return Math.round(1000 / _delta);
 }
