@@ -94,6 +94,13 @@
 <!-- Core JS -->
 <script type="module" src="main.js"></script>
 
+<!-- Reload on orientation change -->
+<script>
+  $(window).bind('orientationchange', function (event) {
+    location.reload(true);
+  });
+</script>
+
 </body>
 
 

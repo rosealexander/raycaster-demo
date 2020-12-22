@@ -16,7 +16,6 @@ export class Raycaster {
 
         this._cameraPlaneX = this._playerDirectionY;
         this._cameraPlaneY = this._playerDirectionX * window.innerWidth/window.innerHeight < 1.0 ? 0.3 : 0.8;
-        console.log(window.innerWidth/window.innerHeight);
 
         this._moveSpeed = 0.1;
         this._rotSpeed = 0.05;

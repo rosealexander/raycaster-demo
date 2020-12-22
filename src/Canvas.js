@@ -23,7 +23,7 @@ export function resizeCanvas(){
     resetCanvasHeight();
 }
 
-export function setCanvasResizeEvent(){
+export function setCanvasResizeEvent(callback = null){
     function _debounce(func) {
         let timer;
         return event => {
@@ -33,4 +33,5 @@ export function setCanvasResizeEvent(){
     }
 
     window.addEventListener("resize", _debounce(resizeCanvas));
+    window.addEventListener("resize", _debounce(callback));
 }

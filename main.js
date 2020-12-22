@@ -22,20 +22,25 @@ import {gameLoop, getFps} from "./src/GameLoop.js";
     setTouchEvent('arrow-left', () => raycaster.turningLeft = true, () => raycaster.turningLeft = false);
 
     //set resize event
-    setCanvasResizeEvent();
-    //reset canvas size
-    resizeCanvas();
+    setCanvasResizeEvent(
+        () => {
+            let canvas = document.getElementById('canvas');
+            let ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            raycaster.drawEnvironment();
+        });
+
 
     //draw
     gameLoop(
-        [raycaster.drawEnvironment.bind(raycaster)],
-        [ raycaster.directionalCommands.bind(raycaster),
+        [resizeCanvas, raycaster.drawEnvironment.bind(raycaster)],
+        [raycaster.directionalCommands.bind(raycaster),
         () => {document.getElementById('fps').textContent=`fps: ${Math.round(getFps()).toString()}`},
-        () => {if (raycaster.isMoving()) {
+        () => {
+            if (raycaster.isMoving()) {
                 let canvas = document.getElementById('canvas');
                 let ctx = canvas.getContext('2d');
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 raycaster.drawEnvironment(); }
         }]);
-
 })();
