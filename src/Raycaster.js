@@ -222,14 +222,9 @@ export class Raycaster {
         this._drawWalls();
 
         //key commands
-        if (this.turningRight) {
-            this._turnRight();
-        } else if (this.turningLeft) {
-            this._turnLeft();
-        } else if (this.movingForward) {
-            this._moveForward();
-        } else if (this.movingBackward) {
-            this._moveBackward();
-        }
+        if (this.turningRight) this._turnRight();
+        else if (this.turningLeft) this._turnLeft();
+        else if (this.movingForward) this._moveForward();
+        else if (this.movingBackward) this._moveBackward();
     }
 }
