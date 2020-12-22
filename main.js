@@ -6,8 +6,8 @@ import {gameLoop, getFps} from "./src/GameLoop.js";
 
 (() => {
     //Setup
-    let demoMap = generateDemoMap(64, 64, 6);
-    let raycaster = new Raycaster(32, 32, demoMap);
+    let demoMap = generateDemoMap(42, 42, 6);
+    let raycaster = new Raycaster(21, 21, demoMap);
 
     //key commands
     setKeyCommand("Up", "ArrowUp", "w", () => raycaster.movingForward = true, () => raycaster.movingForward = false);
