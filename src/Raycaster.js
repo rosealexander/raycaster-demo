@@ -2,10 +2,8 @@ export class Raycaster {
 
     constructor(playerStartPosX, playerStartPosY, worldMap = []) {
 
-        this._canvas = document.querySelector('canvas');
+        this._canvas = document.getElementById('canvas');
         this._ctx = this._canvas.getContext('2d');
-
-        this._flag = false;
 
         this._drawMax = 128;
 
@@ -17,7 +15,8 @@ export class Raycaster {
         this._playerDirectionY = 0;
 
         this._cameraPlaneX = this._playerDirectionY;
-        this._cameraPlaneY = this._playerDirectionX * 0.8;
+        this._cameraPlaneY = this._playerDirectionX * window.innerWidth/window.innerHeight < 1.0 ? 0.3 : 0.8;
+        console.log(window.innerWidth/window.innerHeight);
 
         this._moveSpeed = 0.1;
         this._rotSpeed = 0.05;
@@ -215,27 +214,14 @@ export class Raycaster {
         this._drawWalls();
     }
 
+    isMoving(){
+        return this.turningRight || this.turningLeft || this.movingForward || this.movingBackward;
+    }
+
     directionalCommands(){
         if (this.turningRight) this._turnRight();
         else if (this.turningLeft) this._turnLeft();
         else if (this.movingForward) this._moveForward();
         else if (this.movingBackward) this._moveBackward();
-    }
-
-    isMoving(){
-        return this.turningRight || this.turningLeft || this.movingForward || this.movingBackward;
-    }
-
-    draw(){
-        if (!this._flag) {
-            this._flag = true;
-            this.drawEnvironment();
-        }
-
-        this.directionalCommands();
-
-        if (this.isMoving()){
-            this.drawEnvironment();
-        }
     }
 }
