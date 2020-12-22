@@ -260,7 +260,22 @@ textarea {
    ========================================================================== */
 
 * {
+  -webkit-touch-callout: none;
   -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+html, body {
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+body {
+  margin:0;
+  height:104vh;
   user-select: none;
 }
 
