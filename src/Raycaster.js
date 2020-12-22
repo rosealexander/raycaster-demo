@@ -66,7 +66,6 @@ export class Raycaster {
 
     //Draw functions
     _drawSky() {
-
         let skyColor = this._ctx.createLinearGradient(0, 0, 0, this._canvas.height/2);
         skyColor.addColorStop(0, "cyan");
         skyColor.addColorStop(1, "white");
@@ -77,7 +76,6 @@ export class Raycaster {
     }
 
     _drawFloor() {
-
         let floorColor = this._ctx.createLinearGradient(0, this._canvas.height/2, 0, this._canvas.height);
         floorColor.addColorStop(0, "beige");
         floorColor.addColorStop(1, "tan");
@@ -88,7 +86,6 @@ export class Raycaster {
     }
 
     _drawWalls() {
-
         for (let wallType = this._numberOfWallTypes-1; wallType > 0; wallType -= 1) {
 
             let previousState = null,
@@ -143,9 +140,7 @@ export class Raycaster {
                     }
 
                     let drawDistance = Math.abs(mapPositionX - this._playerPositionX) + Math.abs(mapPositionY - this._playerPositionY);
-                    if (this._worldMap[mapPositionX][mapPositionY] >= wallType
-                        || drawDistance > this._drawMax)
-                    {
+                    if (this._worldMap[mapPositionX][mapPositionY] >= wallType || drawDistance > this._drawMax) {
                         hit = true;
 
                         if (!side) {
