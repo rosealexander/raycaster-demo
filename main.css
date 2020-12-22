@@ -259,6 +259,11 @@ textarea {
    Custom CSS
    ========================================================================== */
 
+* {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
 canvas {
   z-index: -1;
   height: 104vh;
