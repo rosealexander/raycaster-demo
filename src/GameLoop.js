@@ -11,8 +11,8 @@ export const gameLoop = ([...setup], [...draw]) => {
         _flag = false;
         setup.forEach(f => f.call());
     }
-
     window.requestAnimationFrame(gameLoop.bind(null, [...setup], [...draw]));
+
     _currentTime = (new Date()).getTime();
     _delta = (_currentTime - _lastTime);
 

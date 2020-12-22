@@ -5,6 +5,10 @@ import {resizeCanvas, setCanvasResizeEvent} from "./src/Canvas.js";
 import {gameLoop, getFps} from "./src/GameLoop.js";
 
 (() => {
+    //global variables
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
     //Setup
     let demoMap = generateDemoMap(64, 64, 6);
     let raycaster = new Raycaster(32, 32, demoMap);
@@ -24,8 +28,6 @@ import {gameLoop, getFps} from "./src/GameLoop.js";
     //set resize event
     setCanvasResizeEvent(
         () => {
-            let canvas = document.getElementById('canvas');
-            let ctx = canvas.getContext('2d');
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             raycaster.drawEnvironment();
         });
@@ -35,12 +37,9 @@ import {gameLoop, getFps} from "./src/GameLoop.js";
     gameLoop(
         [resizeCanvas, raycaster.drawEnvironment.bind(raycaster)],
         [raycaster.directionalCommands.bind(raycaster),
-        () => {document.getElementById('fps').textContent=`fps: ${Math.round(getFps()).toString()}`},
-        () => {
-            if (raycaster.isMoving()) {
-                let canvas = document.getElementById('canvas');
-                let ctx = canvas.getContext('2d');
+            resizeCanvas, raycaster.drawEnvironment.bind(raycaster),
+            () => {if (raycaster.isMoving()) {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                raycaster.drawEnvironment(); }
+                raycaster.drawEnvironment();}
         }]);
 })();
